@@ -19,4 +19,11 @@ class StringCalculatorTest {
         assertEquals(8, calculator.calculate("4*2"));
         assertEquals(3, calculator.calculate("6/2"));
     }
+
+    @Test
+    @DisplayName("0으로 나눌 때 IllegalArgumentException을 던진다.")
+    void divide_with_zero() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate("1/0"));
+    }
 }
