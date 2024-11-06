@@ -5,13 +5,16 @@ public class StringCalculator {
         if (expression.contains("+")) {
             String[] numbers = expression.split("\\+");
             return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
-        } else if (expression.contains("-")) {
+        }
+        if (expression.contains("-")) {
             String[] numbers = expression.split("-");
             return Integer.parseInt(numbers[0]) - Integer.parseInt(numbers[1]);
-        } else if (expression.contains("*")) {
+        }
+        if (expression.contains("*")) {
             String[] numbers = expression.split("\\*");
             return Integer.parseInt(numbers[0]) * Integer.parseInt(numbers[1]);
-        } else if (expression.contains("/")) {
+        }
+        if (expression.contains("/")) {
             String[] numbers = expression.split("/");
             if (numbers[1].equals("0")) {
                 throw new IllegalArgumentException("Divide by zero");
