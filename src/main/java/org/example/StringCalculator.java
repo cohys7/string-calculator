@@ -4,22 +4,27 @@ public class StringCalculator {
     public int calculate(String expression) {
         if (expression.contains("+")) {
             String[] numbers = expression.split("\\+");
-            return parseNumber(numbers[0]) + parseNumber(numbers[1]);
+            int left = parseNumber(numbers[0]);
+            int right = parseNumber(numbers[1]);
+            return new AddOperation().apply(left, right);
         }
         if (expression.contains("-")) {
             String[] numbers = expression.split("-");
-            return parseNumber(numbers[0]) - parseNumber(numbers[1]);
+            int left = parseNumber(numbers[0]);
+            int right = parseNumber(numbers[1]);
+            return new MinusOperation().apply(left, right);
         }
         if (expression.contains("*")) {
             String[] numbers = expression.split("\\*");
-            return parseNumber(numbers[0]) * parseNumber(numbers[1]);
+            int left = parseNumber(numbers[0]);
+            int right = parseNumber(numbers[1]);
+            return new MultipleOperation().apply(left, right);
         }
         if (expression.contains("/")) {
             String[] numbers = expression.split("/");
-            if (numbers[1].equals("0")) {
-                throw new IllegalArgumentException("Divide by zero");
-            }
-            return parseNumber(numbers[0]) / parseNumber(numbers[1]);
+            int left = parseNumber(numbers[0]);
+            int right = parseNumber(numbers[1]);
+            return new DivideOperation().apply(left, right);
         }
         throw new IllegalArgumentException("Unsupported operation");
     }
