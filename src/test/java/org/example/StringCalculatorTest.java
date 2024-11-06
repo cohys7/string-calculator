@@ -13,9 +13,10 @@ class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
 
         // when 실행 하면 (행동)
-        Integer result = calculator.calculate("1+2");
-
         // then 결과가 이렇게 된다. (검증)
-        assertEquals(3, result);
+        assertEquals(3, calculator.calculate("1+2"));
+        assertEquals(1, calculator.calculate("3-2"));
+        assertEquals(8, calculator.calculate("4*2"));
+        assertEquals(3, calculator.calculate("6/2"));
     }
 }
