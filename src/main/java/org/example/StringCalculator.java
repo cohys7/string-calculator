@@ -2,31 +2,20 @@ package org.example;
 
 public class StringCalculator {
     public int calculate(String expression) {
-        if (expression.contains("+")) {
-            String[] numbers = expression.split("\\+");
-            int left = parseNumber(numbers[0]);
-            int right = parseNumber(numbers[1]);
+        Operator operator = Operator.find(expression);
+        String[] numbers = expression.split(operator.getSymbol());
+        int left = parseNumber(numbers[0]);
+        int right = parseNumber(numbers[1]);
+        if (operator == Operator.ADD) {
             return new AddOperation().apply(left, right);
         }
-        if (expression.contains("-")) {
-            String[] numbers = expression.split("-");
-            int left = parseNumber(numbers[0]);
-            int right = parseNumber(numbers[1]);
+        if (operator == Operator.MINUS) {
             return new MinusOperation().apply(left, right);
         }
-        if (expression.contains("*")) {
-            String[] numbers = expression.split("\\*");
-            int left = parseNumber(numbers[0]);
-            int right = parseNumber(numbers[1]);
+        if (operator == Operator.MULTIPLY) {
             return new MultipleOperation().apply(left, right);
         }
-        if (expression.contains("/")) {
-            String[] numbers = expression.split("/");
-            int left = parseNumber(numbers[0]);
-            int right = parseNumber(numbers[1]);
-            return new DivideOperation().apply(left, right);
-        }
-        throw new IllegalArgumentException("Unsupported operation");
+        return new DivideOperation().apply(left, right);
     }
 
     private Integer parseNumber(String number) {
