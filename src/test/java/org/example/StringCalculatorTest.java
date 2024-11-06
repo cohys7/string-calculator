@@ -52,4 +52,11 @@ class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertThrows(IllegalArgumentException.class, () -> calculator.calculate("1^2"));
     }
+
+    @Test
+    @DisplayName("정수 범위를 초과하는 숫자가 들어올 때 IllegalArgumentException을 던진다.")
+    void over_int_range_number() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate("2147483648+1"));
+    }
 }
