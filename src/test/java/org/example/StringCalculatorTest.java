@@ -45,4 +45,11 @@ class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertThrows(IllegalArgumentException.class, () -> calculator.calculate(expression));
     }
+
+    @Test
+    @DisplayName("지원하지 않는 연산자가 들어올 때 IllegalArgumentException을 던진다.")
+    void unsupported_operation() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate("1^2"));
+    }
 }
