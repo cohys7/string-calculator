@@ -2,22 +2,27 @@ package org.example;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
-    @Test
+    @ParameterizedTest
     @DisplayName("사칙 연산을 수행할 수 있다.")
-    void calculate() {
+    @CsvSource({
+            "1+2, 3",
+            "3-2, 1",
+            "4*2, 8",
+            "6/2, 3"
+    })
+    void calculate(String expression, Integer expected) {
         // given 주어진 상황을 (상황)
         StringCalculator calculator = new StringCalculator();
 
         // when 실행 하면 (행동)
         // then 결과가 이렇게 된다. (검증)
-        assertEquals(3, calculator.calculate("1+2"));
-        assertEquals(1, calculator.calculate("3-2"));
-        assertEquals(8, calculator.calculate("4*2"));
-        assertEquals(3, calculator.calculate("6/2"));
+        assertEquals(expected, calculator.calculate(expression));
     }
 
     @Test
