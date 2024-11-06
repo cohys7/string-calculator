@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,5 +31,18 @@ class StringCalculatorTest {
     void divide_with_zero() {
         StringCalculator calculator = new StringCalculator();
         assertThrows(IllegalArgumentException.class, () -> calculator.calculate("1/0"));
+    }
+
+    @ParameterizedTest
+    @DisplayName("숫자 대신 문자가 들어올 때 IllegalArgumentException을 던진다.")
+    @ValueSource(strings = {
+            "a-0",
+            "0+b",
+            "1*c",
+            "d/2"
+    })
+    void invalid_number(String expression) {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate(expression));
     }
 }
