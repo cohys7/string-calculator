@@ -6,16 +6,7 @@ public class StringCalculator {
         String[] numbers = expression.split("\\" + operator.getSymbol());
         int left = parseNumber(numbers[0]);
         int right = parseNumber(numbers[1]);
-        if (operator == Operator.ADD) {
-            return new AddOperation().apply(left, right);
-        }
-        if (operator == Operator.MINUS) {
-            return new MinusOperation().apply(left, right);
-        }
-        if (operator == Operator.MULTIPLY) {
-            return new MultipleOperation().apply(left, right);
-        }
-        return new DivideOperation().apply(left, right);
+        return operator.applyOperation(left, right);
     }
 
     private Integer parseNumber(String number) {

@@ -1,15 +1,17 @@
 package org.example;
 
 public enum Operator {
-    ADD("+"),
-    MINUS("-"),
-    MULTIPLY("*"),
-    DIVIDE("/");
+    ADD("+", new AddOperation()),
+    MINUS("-", new MinusOperation()),
+    MULTIPLY("*", new MultipleOperation()),
+    DIVIDE("/", new DivideOperation());
 
     private final String symbol;
+    private final Operation operation;
 
-    Operator(String symbol) {
+    Operator(String symbol, Operation operation) {
         this.symbol = symbol;
+        this.operation = operation;
     }
 
     public static Operator find(String expression) {
@@ -25,5 +27,8 @@ public enum Operator {
         return symbol;
     }
 
-
+    public int applyOperation(int left, int right) {
+        return operation.apply(left, right);
+    }
 }
+
